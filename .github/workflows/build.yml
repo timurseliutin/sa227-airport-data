@@ -15,18 +15,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - run: pip install pygeomag==1.1.0
       - name: Build current and next cycle
-        run: python tools/publish.py
+        id: build
+        shell: bash
+        run: |
+          set -o pipefail
+          python -u tools/publish.py 2>&1 | tee last-build.txt
       - name: Commit
+        if: always()
         run: |
           git config user.name "sa227-data-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add -A dist
+          if [ "${{ steps.build.outcome }}" = "success" ]; then git add -A dist; fi
+          git add last-build.txt
           git diff --cached --quiet && exit 0
-          git commit -m "Airport data $(python -c "import json;m=json.load(open('dist/manifest.json'));print(m['current']['cycle'], (m['next'] or {}).get('cycle',''))")"
+          git commit -m "Airport data build ${{ steps.build.outcome }}"
           git push
