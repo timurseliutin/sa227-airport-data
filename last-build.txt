@@ -1,3 +1,1 @@
-2611 {'us': 10198, 'ca_mx': 1125, 'alias': 5618} 2231 KB
-2612 {'us': 10200, 'ca_mx': 1125, 'alias': 5619} 2231 KB
-manifest updated: 2611 2612
+manifest unchanged
