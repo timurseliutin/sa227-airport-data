@@ -1,5 +1,3 @@
-CHECK FAILED:
-  PANC runway 7R missing
-  PHNL runway 8R missing
-  MMUN 12L TORA 9186 < 10000
-build failed for cycle 2611
+2611 {'us': 10198, 'ca_mx': 1125, 'alias': 5618} 2231 KB
+2612 {'us': 10200, 'ca_mx': 1125, 'alias': 5619} 2231 KB
+manifest updated: 2611 2612
