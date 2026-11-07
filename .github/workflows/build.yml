@@ -1,0 +1,32 @@
+name: build-airport-data
+on:
+  schedule:
+    - cron: '23 9 * * *'     # daily 09:23 UTC (AIRAC effective time is 0901Z)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['tools/**', '.github/workflows/build.yml']
+permissions:
+  contents: write
+concurrency:
+  group: build-airport-data
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pygeomag==1.1.0
+      - name: Build current and next cycle
+        run: python tools/publish.py
+      - name: Commit
+        run: |
+          git config user.name "sa227-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A dist
+          git diff --cached --quiet && exit 0
+          git commit -m "Airport data $(python -c "import json;m=json.load(open('dist/manifest.json'));print(m['current']['cycle'], (m['next'] or {}).get('cycle',''))")"
+          git push
