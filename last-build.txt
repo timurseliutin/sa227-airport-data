@@ -1,0 +1,5 @@
+CHECK FAILED:
+  PANC runway 7R missing
+  PHNL runway 8R missing
+  MMUN 12L TORA 9186 < 10000
+build failed for cycle 2611
