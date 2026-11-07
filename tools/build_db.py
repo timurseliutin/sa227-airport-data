@@ -195,7 +195,7 @@ def build(nasr_dir, oa_dir, eff, oa_date):
 CONTROL = {  # code: (runway end ident, minimum TORA ft) - long-established runways
     'KLRD': ('18R', 8000), 'KYIP': ('23', 7000), 'KJFK': ('31L', 10000), 'KDEN': ('16R', 15000),
     'PANC': ('7R', 10000), 'KSLC': ('34R', 11000), 'KPVU': ('13', 8000), 'PHNL': ('8R', 11000),
-    'CYVR': ('08R', 9000), 'CYYZ': ('05', 10000), 'MMMX': ('05L', 12000), 'MMUN': ('12L', 10000),
+    'CYVR': ('08R', 9000), 'CYYZ': ('05', 10000), 'MMMX': ('05L', 12000), 'MMUN': ('12R', 10000),
 }
 
 def check(db):
@@ -206,7 +206,7 @@ def check(db):
     for code, (end, mn) in CONTROL.items():
         ap = a.get(code)
         if not ap: errs.append('control airport %s missing' % code); continue
-        found = [(rw, e) for rw in ap[5] for e in rw[3] if e[0] == end]
+        found = [(rw, e) for rw in ap[5] for e in rw[3] if e[0].lstrip('0') == end.lstrip('0')]
         if not found: errs.append('%s runway %s missing' % (code, end)); continue
         rw, e = found[0]
         tora = e[5] or rw[0]
