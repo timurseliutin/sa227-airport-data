@@ -1,19 +1,6 @@
 {
  "v": 2,
  "current": {
-  "cycle": "2611",
-  "eff": "2026-10-29",
-  "exp": "2026-11-26",
-  "file": "airports-2611.json",
-  "bytes": 2285047,
-  "sha256": "9c0d4182902be47d90f2874f1a6cd0e296774c54623611c6fb1b23ef6b200255",
-  "counts": {
-   "us": 10198,
-   "ca_mx": 1125,
-   "alias": 5618
-  }
- },
- "next": {
   "cycle": "2612",
   "eff": "2026-11-26",
   "exp": "2026-12-24",
@@ -26,6 +13,19 @@
    "alias": 5619
   }
  },
+ "next": {
+  "cycle": "2613",
+  "eff": "2026-12-24",
+  "exp": "2027-01-21",
+  "file": "airports-2613.json",
+  "bytes": 2283226,
+  "sha256": "a743c70d6a3b3cdc02f977f0bbd1d86993bae1eaab79156b61dca24136c4b6b4",
+  "counts": {
+   "us": 10191,
+   "ca_mx": 1121,
+   "alias": 5611
+  }
+ },
  "base": "https://raw.githubusercontent.com/timurseliutin/sa227-airport-data/main/dist/",
- "updated": "2026-11-07T03:13Z"
+ "updated": "2026-11-26T10:29Z"
 }
